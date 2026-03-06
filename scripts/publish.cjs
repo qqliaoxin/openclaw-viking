@@ -13,16 +13,14 @@ function run(command) {
 }
 
 console.log("Running build process...");
-run("pnpm ui:build");
-run("pnpm build");
-
+run("npm run prepack");
 if (!fs.existsSync(distDir)) {
   console.error("Error: dist directory does not exist after build.");
   process.exit(1);
 }
 
 console.log(`Creating tarball package: ${tarballName}`);
-run("pnpm pack");
+run("npm pack");
 
 if (!fs.existsSync(path.join(process.cwd(), tarballName))) {
   console.error("Error: tarball creation failed.");
